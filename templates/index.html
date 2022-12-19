@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULAMEX PV</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/static/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function zestawienie() {
+            $.getJSON("/_zestawienie", {
+                typ_pv: $('select[name="typ_pv"]').val(),
+                uklad_pv: $('select[name="uklad_pv"]').val(),
+                moc_pv: $('input[name="moc_pv"]').val(),
+                ilosc_pv: $('input[name="ilosc_pv"]').val(),
+            }, function(data) {
+                $("#result").html(data.result);
+            });
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <p><h2>MODUŁY FOTOWOLTAICZNE</h2></p>
+        <p><select name="typ_pv" title="Wymiary modułów fotowoltaicznych" onchange="zestawienie()">
+            <option value="1">Wymiary = 1038 x 1755 mm</option>
+            <option value="2">Wymiary = 1038 x 2094 mm</option>
+            <option value="3">Wymiary = 1096 x 2384 mm</option>
+            <option value="4">Wymiary = 1133 x 2256 mm</option>
+            <option value="5">Wymiary = 1134 x 2266 mm</option>
+            <option value="6">Wymiary = 1134 x 2278 mm</option>
+            <option value="7">Wymiary = 1134 x 2465 mm</option>
+            <option value="8">Wymiary = 1303 x 2172 mm</option>
+            <option value="9">Wymiary = 1303 x 2384 mm</option>
+        </select></p>
+        <p><select name="uklad_pv" title="Układ modułów na konstrukcji" onchange="zestawienie()">
+            <option value="1">Układ = pionowy (V)</option>
+            <option value="2">Układ = poziomy (H)</option>
+        </select></p>
+        <p>Moc 1 modułu = <input type="number" step="5" name="moc_pv" value="450"
+            title="Moc pojedycznego modułu" onchange="zestawienie()"> W</p>
+        <p>Ilość modułów = <input type="number" step="1" name="ilosc_pv" value="8"
+            title="Ilość modułów fotowoltaicznych" onchange="zestawienie()"> szt.</p>
+    </form>
+    <br>
+    <p id="result"></p>
+    <script>zestawienie()</script>
+</body>
+</html>
