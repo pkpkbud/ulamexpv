@@ -74,6 +74,7 @@ def _zestawienie():
             f"<tr><th colspan=5>Ciężar konstrukcji = {182.0 * ilosc_kons:.0f} kg</td>"
         )
     result += (
+        f"<tr><th colspan=5>Ilość konstrukcji (stołów) = {ilosc_kons:.0f} szt.</td>"
         f"<tr><th colspan=5>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW</td>"
         f"</table>"
     )
