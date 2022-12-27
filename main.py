@@ -19,34 +19,34 @@ def _zestawienie():
     result = (
         f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
         f"<table>"
-        f"<tr><th>Poz.<th>Liczba<th>Przekrój<th>Długość<th>Ciężar"
-        f"<tr><th>[nr]<th>[szt.]<th>[opis]<th>[mm]<th>[kg/szt.]"
-        f"<tr><td>1<td>{4 * ilosc_kons}<td>C75x45x15x3.0<td>2000<td>7,9"
-        f"<tr><td>2<td>{2 * ilosc_kons}<td>C82x50x18x2.0<td>2165<td>6,8"
-        f"<tr><td>3<td>{2 * ilosc_kons}<td>C82x50x18x2.0<td>1000<td>3,1"
-        f"<tr><td>4<td>{2 * ilosc_kons}<td>LZR60x60x2<td>2750<td>5,0"
-        f"<tr><td>5<td>{1 * ilosc_kons}<td>LZR70x70x2<td>3100<td>6,6"
+        f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Przekrój<th>Długość<th>Ciężar"
+        f"<tr><th>[nr]<th>[opis]<th>[szt.]<th>[opis]<th>[mm]<th>[kg/szt.]"
+        f"<tr><td>1<td>SŁUP DOLNY<td>{4 * ilosc_kons}<td>C75x45x15x3.0<td>2000<td>7,9"
+        f"<tr><td>2<td>SŁUP GÓRNY TYLNI<td>{2 * ilosc_kons}<td>C82x50x18x2.0<td>2165<td>6,8"
+        f"<tr><td>3<td>SŁUP GÓRNY PRZEDNI<td>{2 * ilosc_kons}<td>C82x50x18x2.0<td>1000<td>3,1"
+        f"<tr><td>4<td>WSPORNIK BOCZNY<td>{2 * ilosc_kons}<td>LZR60x60x2<td>2750<td>5,0"
+        f"<tr><td>5<td>WSPORNIK TYLNI<td>{1 * ilosc_kons}<td>LZR70x70x2<td>3100<td>6,6"
     )
     if typ_pv == 1 and uklad_pv == 1:
         result += (
-            f"<tr><td>6<td>{8 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
-            f"<tr><td>72<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400<td>8,3"
-            f"<tr><td>81<td>{12 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
-            f"<tr><th colspan=5>Ciężar konstrukcji = {186.5 * ilosc_kons:.0f} kg</td>"
+            f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{8 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
+            f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400<td>8,3"
+            f"<tr><td>81<td>PŁATEW (81-82)<td>{12 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
+            f"<tr><th colspan=6>Ciężar konstrukcji = {186.5 * ilosc_kons:.0f} kg</td>"
         )
     elif typ_pv == 2:
         result += (
-            f"<tr><td>6<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
-            f"<tr><td>71<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2180<td>7,6"
-            f"<tr><td>81<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
-            f"<tr><th colspan=5>Ciężar konstrukcji = {169.7 * ilosc_kons:.0f} kg</td>"
+            f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
+            f"<tr><td>71<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2180<td>7,6"
+            f"<tr><td>81<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
+            f"<tr><th colspan=6>Ciężar konstrukcji = {169.7 * ilosc_kons:.0f} kg</td>"
         )
     elif typ_pv in [3, 4, 5, 6] or (typ_pv == 7 and uklad_pv == 2):
         result += (
-            f"<tr><td>6<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
-            f"<tr><td>72<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400<td>8,3"
-            f"<tr><td>81<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
-            f"<tr><th colspan=5>Ciężar konstrukcji = {172.8 * ilosc_kons:.0f} kg</td>"
+            f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
+            f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400<td>8,3"
+            f"<tr><td>81<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
+            f"<tr><th colspan=6>Ciężar konstrukcji = {172.8 * ilosc_kons:.0f} kg</td>"
         )
     elif (
         (typ_pv == 7 and uklad_pv == 1)
@@ -54,28 +54,28 @@ def _zestawienie():
         or (typ_pv == 9 and uklad_pv == 2)
     ):
         result += (
-            f"<tr><td>6<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
-            f"<tr><td>73<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2680<td>9,3"
-            f"<tr><td>81<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
-            f"<tr><th colspan=5>Ciężar konstrukcji = {176.7 * ilosc_kons:.0f} kg</td>"
+            f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
+            f"<tr><td>73<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2680<td>9,3"
+            f"<tr><td>81<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2300<td>6,1"
+            f"<tr><th colspan=6>Ciężar konstrukcji = {176.7 * ilosc_kons:.0f} kg</td>"
         )
     elif typ_pv == 8:
         result += (
-            f"<tr><td>6<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
-            f"<tr><td>71<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2180<td>7,6"
-            f"<tr><td>82<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2640<td>7,0"
-            f"<tr><th colspan=5>Ciężar konstrukcji = {178.9 * ilosc_kons:.0f} kg</td>"
+            f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
+            f"<tr><td>71<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2180<td>7,6"
+            f"<tr><td>82<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2640<td>7,0"
+            f"<tr><th colspan=6>Ciężar konstrukcji = {178.9 * ilosc_kons:.0f} kg</td>"
         )
     elif typ_pv == 9:
         result += (
-            f"<tr><td>6<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
-            f"<tr><td>72<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400<td>8,3"
-            f"<tr><td>82<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2640<td>7,0"
-            f"<tr><th colspan=5>Ciężar konstrukcji = {182.0 * ilosc_kons:.0f} kg</td>"
+            f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>420<td>1,3"
+            f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400<td>8,3"
+            f"<tr><td>82<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x1.5<td>2640<td>7,0"
+            f"<tr><th colspan=6>Ciężar konstrukcji = {182.0 * ilosc_kons:.0f} kg</td>"
         )
     result += (
-        f"<tr><th colspan=5>Ilość konstrukcji (stołów) = {ilosc_kons:.0f} szt.</td>"
-        f"<tr><th colspan=5>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW</td>"
+        f"<tr><th colspan=6>Ilość konstrukcji (stołów) = {ilosc_kons:.0f} szt.</td>"
+        f"<tr><th colspan=6>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW</td>"
         f"</table>"
     )
     if typ_pv == 1 and uklad_pv == 2:
