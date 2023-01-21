@@ -17,6 +17,8 @@ def _zestawienie():
     ilosc_pv = int(request.args.get("ilosc_pv"))
     ilosc_kons = ceil(ilosc_pv / 12) if typ_pv == 1 else ceil(ilosc_pv / 8)
     result = (
+        f'<form action="/static/Instrukcja.pdf"><input type="submit" value="Instrukcja"></form><br>'
+        f'<form action="/static/UNI{typ_pv}{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form>'
         f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
         f"<table>"
         f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"

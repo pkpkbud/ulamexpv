@@ -20,6 +20,10 @@ input[type=number] {
     width: 90px;
 }
 
+input[type=submit] {
+    width: 200px;
+}
+
 table, th, td {
     text-align: center;
     padding: 3px;
