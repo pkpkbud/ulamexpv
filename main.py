@@ -9,15 +9,20 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/_zestawienie")
-def _zestawienie():
+@app.route("/uniwersalna")
+def uniwersalna():
+    return render_template("uniwersalna.html")
+
+
+@app.route("/_uniwersalna")
+def _uniwersalna():
     typ_pv = int(request.args.get("typ_pv"))
     uklad_pv = int(request.args.get("uklad_pv"))
     moc_pv = int(request.args.get("moc_pv"))
     ilosc_pv = int(request.args.get("ilosc_pv"))
     ilosc_kons = ceil(ilosc_pv / 12) if typ_pv == 1 else ceil(ilosc_pv / 8)
     result = (
-        f'<p><form action="/static/Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
+        f'<p><form action="/static/Uniwersalna.pdf"><input type="submit" value="Instrukcja"></form></p>'
         f'<p><form action="/static/UNI{typ_pv}{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form></p>'
         f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
         f"<table>"
@@ -118,6 +123,42 @@ def _zestawienie():
     )
     if typ_pv == 1 and uklad_pv == 2:
         result = "<h2>BRAK</h2>"
+    return jsonify(result=result)
+
+
+@app.route("/jednopodporowa")
+def jednopodporowa():
+    return render_template("jednopodporowa.html")
+
+
+@app.route("/_jednopodporowa")
+def _jednopodporowa():
+    szer_pv = int(request.args.get("szer_pv"))
+    wys_pv = int(request.args.get("wys_pv"))
+    moc_pv = int(request.args.get("moc_pv"))
+    ilosc_pv = int(request.args.get("ilosc_pv"))
+    dlugosc = ceil(ilosc_pv / 2) * (szer_pv + 20) + 60
+    ilosc_ram = max(2, ceil((dlugosc - 1000) / 2000) + 1)
+    if wys_pv == 1:
+        result = (
+            f'<p><form action="/static/Jednopodporowa.pdf"><input type="submit" value="Instrukcja"></form></p>'
+            f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
+            f"<table>"
+            f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
+            f"<tr><th>[nr]<th>-<th>[szt.]<th>-<th>[mm]"
+            f"<tr><td>1<td>SŁUP<td>{1 * ilosc_ram}<td>C120x40x15x3.0<td>2800"
+            f"<tr><td>2<td>RYGIEL<td>{1 * ilosc_ram}<td>L100x70x25x2.5<td>2800"
+            f"<tr><td>3<td>STĘŻENIE DŁUGIE<td>{1 * ilosc_ram}<td>LZR70x70x2<td>1700"
+            f"<tr><td>4<td>STĘŻENIE KRÓTKIE<td>{1 * ilosc_ram}<td>LZR70x70x2<td>1100"
+            f"<tr><td>5<td>PŁATEW<td>{4 * ceil(dlugosc / 6210)}<td>PV40x40<td>6210"
+            f"<tr><th colspan=6>Masa konstrukcji = {30 * ilosc_ram + 0.8e-3 * 4 * dlugosc:.0f} kg"
+            f"<tr><td>S.1<td>ŚRUBA M12<td>{5 * ilosc_ram}<td>DIN-933-TZN-8.8<td>35"
+            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{5 * ilosc_ram}<td>DIN-6923-TZN-8<td>-"
+            f"<tr><td>S.3<td>PODKŁADKA D13<td>{10 * ilosc_ram}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><th colspan=6>Ilość konstrukcji (długość do 20 m) = {ceil(dlugosc / 20000):.0f} szt."
+            f"<tr><th colspan=6>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW"
+            f"</table>"
+        )
     return jsonify(result=result)
 
 

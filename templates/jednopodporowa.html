@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEDNOPODPOROWA</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/static/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function zestawienie() {
+            $.getJSON("/_jednopodporowa", {
+                szer_pv: $('input[name="szer_pv"]').val(),
+                wys_pv: $('select[name="wys_pv"]').val(),
+                moc_pv: $('input[name="moc_pv"]').val(),
+                ilosc_pv: $('input[name="ilosc_pv"]').val(),
+            }, function(data) {
+                $("#result").html(data.result);
+            });
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <input type="button" value="« Wróć" onclick="window.location='.';">
+        <p><h2>MODUŁY FOTOWOLTAICZNE</h2></p>
+        <p>Szerokość = <input type="number" step="5" name="szer_pv" value="1000" min="0"
+            title="Szerokość pojedycznego modułu" onchange="zestawienie()"> mm</p>
+        <p><select name="wys_pv" title="Wysokość pojedynczego modułu" onchange="zestawienie()">
+            <option value="1">Wysokość = do 1800 mm</option>
+            <option disabled>Wysokość = do 2100 mm</option>
+        </select></p>
+        <p>Układ = pionowy (V)</p>
+        <p>Moc 1 modułu = <input type="number" step="5" name="moc_pv" value="450" min="0"
+            title="Moc pojedycznego modułu" onchange="zestawienie()"> W</p>
+        <p>Ilość modułów = <input type="number" step="1" name="ilosc_pv" value="8" min="0"
+            title="Ilość modułów fotowoltaicznych" onchange="zestawienie()"> szt.</p>
+    </form>
+    <p id="result"></p>
+    <script>zestawienie()</script>
+</body>
+</html>
