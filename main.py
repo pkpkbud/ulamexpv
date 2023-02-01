@@ -1,20 +1,67 @@
+from contextlib import suppress
 from math import ceil
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 from flask_autoindex import AutoIndex
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 
 app = Flask(__name__)
+app.secret_key = "ULAMEX_SECRET_KEY"
+
 idx = AutoIndex(app, "./pliki", add_url_rules=False)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+users = {
+    "monika": {"password": "cichowska"},
+    "jakub": {"password": "zientek"},
+}
+
+
+class User(UserMixin):
+    pass
+
+
+@login_manager.user_loader
+def user_loader(username):
+    if username not in users:
+        return
+
+    user = User()
+    user.id = username
+    return user
+
+
+@login_manager.request_loader
+def request_loader(request):
+    username = request.form.get("username")
+    if username not in users:
+        return
+
+    user = User()
+    user.id = username
+    user.is_authenticated = request.form["password"] == users[username]["password"]
+    return user
 
 
 @app.route("/pliki/")
 @app.route("/pliki/<path:path>")
+@login_required
 def autoindex(path="."):
     return idx.render_autoindex(path)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "POST":
+        with suppress(KeyError):
+            username = request.form.get("username")
+            if request.form.get("password") == users[username]["password"]:
+                user = User()
+                user.id = username
+                login_user(user)
+                return redirect(url_for("autoindex"))
     return render_template("index.html")
 
 
@@ -154,4 +201,4 @@ def _jednopodporowa():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=False)
+    app.run(host="127.0.0.1", port=8080, debug=True)
