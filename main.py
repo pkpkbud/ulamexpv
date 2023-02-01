@@ -78,8 +78,8 @@ def _dwupodporowa():
     ilosc_pv = int(request.args.get("ilosc_pv"))
     ilosc_kons = ceil(ilosc_pv / 12) if typ_pv == 1 else ceil(ilosc_pv / 8)
     result = (
-        f'<p><form action="/pliki/Dwupodporowa/Dwupodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
-        f'<p><form action="/pliki/Dwupodporowa/Dwupodporowa_U{typ_pv}{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form></p>'
+        f'<p><form action="/static/Dwupodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
+        f'<p><form action="/static/Dwupodporowa_U{typ_pv}{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form></p>'
         f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
         f"<table>"
         f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
@@ -179,7 +179,7 @@ def _jednopodporowa():
     ilosc_ram = max(2, ceil((dlugosc - 1000) / 2000) + 1)
     if wys_pv == 1:
         result = (
-            f'<p><form action="/pliki/Jednopodporowa/Jednopodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
+            f'<p><form action="/static/Jednopodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
             f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
             f"<table>"
             f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
