@@ -85,10 +85,10 @@ def _dwupodporowa():
         f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
         f"<tr><th>[nr]<th>-<th>[szt.]<th>-<th>[mm]"
         f"<tr><td>1<td>SŁUP DOLNY<td>{4 * ilosc_kons}<td>C75x45x15x3.0<td>2000"
-        f"<tr><td>2<td>SŁUP GÓRNY TYLNI<td>{2 * ilosc_kons}<td>C82x50x18x2.0<td>2165"
+        f"<tr><td>2<td>SŁUP GÓRNY TYLNY<td>{2 * ilosc_kons}<td>C82x50x18x2.0<td>2165"
         f"<tr><td>3<td>SŁUP GÓRNY PRZEDNI<td>{2 * ilosc_kons}<td>C82x50x18x2.0<td>1000"
         f"<tr><td>4<td>WSPORNIK BOCZNY<td>{2 * ilosc_kons}<td>LZR60x60x2<td>2750"
-        f"<tr><td>5<td>WSPORNIK TYLNI<td>{1 * ilosc_kons}<td>LZR70x70x2<td>3100"
+        f"<tr><td>5<td>WSPORNIK TYLNY<td>{1 * ilosc_kons}<td>LZR70x70x2<td>3100"
     )
     if typ_pv == 1 and uklad_pv == 1:
         result += (
