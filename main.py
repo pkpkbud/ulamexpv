@@ -80,6 +80,7 @@ def _dwupodporowa():
     result = (
         f'<p><form action="/static/Dwupodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
         f'<p><form action="/static/Dwupodporowa_U{typ_pv}{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form></p>'
+        f'<h2><img src="/static/Dwupodporowa_{1 if typ_pv == 1 else 2}{uklad_pv}.png"> x {ilosc_kons}</h2>'
         f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
         f"<table>"
         f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
