@@ -97,9 +97,12 @@ def _dwupodporowa():
             f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400"
             f"<tr><td>81<td>PŁATEW (81-82)<td>{12 * ilosc_kons}<td>C110x50x15x2.0<td>2300"
             f"<tr><th colspan=6>Masa konstrukcji = {213.1 * ilosc_kons:.0f} kg"
-            f"<tr><td>S.1<td>ŚRUBA M12<td>{66 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
-            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{66 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
-            f"<tr><td>S.3<td>PODKŁADKA D13<td>{132 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.1<td>ŚRUBA M12<td>{54 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
+            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{54 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
+            f"<tr><td>S.3<td>PODKŁADKA D13<td>{108 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.4<td>ŚRUBA M8<td>{12 * ilosc_kons}<td>DIN-933-TZN-8.8<td>30"
+            f"<tr><td>S.5<td>NAKRĘTKA M8<td>{12 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
+            f"<tr><td>S.6<td>PODKŁADKA D9<td>{24 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
     elif typ_pv in [2, 10]:
         result += (
@@ -107,9 +110,12 @@ def _dwupodporowa():
             f"<tr><td>71<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2180"
             f"<tr><td>81<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x2.0<td>2300"
             f"<tr><th colspan=6>Masa konstrukcji = {192 * ilosc_kons:.0f} kg"
-            f"<tr><td>S.1<td>ŚRUBA M12<td>{60 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
-            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{60 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
-            f"<tr><td>S.3<td>PODKŁADKA D13<td>{120 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.1<td>ŚRUBA M12<td>{50 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
+            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{50 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
+            f"<tr><td>S.3<td>PODKŁADKA D13<td>{100 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.4<td>ŚRUBA M8<td>{10 * ilosc_kons}<td>DIN-933-TZN-8.8<td>30"
+            f"<tr><td>S.5<td>NAKRĘTKA M8<td>{10 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
+            f"<tr><td>S.6<td>PODKŁADKA D9<td>{20 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
     elif typ_pv in [3, 4, 5, 6] or (typ_pv == 7 and uklad_pv == 2):
         result += (
@@ -117,9 +123,12 @@ def _dwupodporowa():
             f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400"
             f"<tr><td>81<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x2.0<td>2300"
             f"<tr><th colspan=6>Masa konstrukcji = {195.1 * ilosc_kons:.0f} kg"
-            f"<tr><td>S.1<td>ŚRUBA M12<td>{60 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
-            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{60 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
-            f"<tr><td>S.3<td>PODKŁADKA D13<td>{120 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.1<td>ŚRUBA M12<td>{50 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
+            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{50 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
+            f"<tr><td>S.3<td>PODKŁADKA D13<td>{100 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.4<td>ŚRUBA M8<td>{10 * ilosc_kons}<td>DIN-933-TZN-8.8<td>30"
+            f"<tr><td>S.5<td>NAKRĘTKA M8<td>{10 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
+            f"<tr><td>S.6<td>PODKŁADKA D9<td>{20 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
     elif (
         (typ_pv == 7 and uklad_pv == 1)
@@ -131,9 +140,12 @@ def _dwupodporowa():
             f"<tr><td>73<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2680"
             f"<tr><td>81<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x2.0<td>2300"
             f"<tr><th colspan=6>Masa konstrukcji = {199 * ilosc_kons:.0f} kg"
-            f"<tr><td>S.1<td>ŚRUBA M12<td>{60 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
-            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{60 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
-            f"<tr><td>S.3<td>PODKŁADKA D13<td>{120 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.1<td>ŚRUBA M12<td>{50 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
+            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{50 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
+            f"<tr><td>S.3<td>PODKŁADKA D13<td>{100 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.4<td>ŚRUBA M8<td>{10 * ilosc_kons}<td>DIN-933-TZN-8.8<td>30"
+            f"<tr><td>S.5<td>NAKRĘTKA M8<td>{10 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
+            f"<tr><td>S.6<td>PODKŁADKA D9<td>{20 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
     elif typ_pv == 8:
         result += (
@@ -141,9 +153,12 @@ def _dwupodporowa():
             f"<tr><td>71<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2180"
             f"<tr><td>82<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x2.0<td>2640"
             f"<tr><th colspan=6>Masa konstrukcji = {203.9 * ilosc_kons:.0f} kg"
-            f"<tr><td>S.1<td>ŚRUBA M12<td>{60 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
-            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{60 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
-            f"<tr><td>S.3<td>PODKŁADKA D13<td>{120 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.1<td>ŚRUBA M12<td>{50 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
+            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{50 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
+            f"<tr><td>S.3<td>PODKŁADKA D13<td>{100 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.4<td>ŚRUBA M8<td>{10 * ilosc_kons}<td>DIN-933-TZN-8.8<td>30"
+            f"<tr><td>S.5<td>NAKRĘTKA M8<td>{10 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
+            f"<tr><td>S.6<td>PODKŁADKA D9<td>{20 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
     elif typ_pv == 9:
         result += (
@@ -151,9 +166,12 @@ def _dwupodporowa():
             f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400"
             f"<tr><td>82<td>PŁATEW (81-82)<td>{10 * ilosc_kons}<td>C110x50x15x2.0<td>2640"
             f"<tr><th colspan=6>Masa konstrukcji = {207 * ilosc_kons:.0f} kg"
-            f"<tr><td>S.1<td>ŚRUBA M12<td>{60 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
-            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{60 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
-            f"<tr><td>S.3<td>PODKŁADKA D13<td>{120 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.1<td>ŚRUBA M12<td>{50 * ilosc_kons}<td>DIN-933-TZN-8.8<td>35"
+            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{50 * ilosc_kons}<td>DIN-6923-TZN-8<td>-"
+            f"<tr><td>S.3<td>PODKŁADKA D13<td>{100 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
+            f"<tr><td>S.4<td>ŚRUBA M8<td>{10 * ilosc_kons}<td>DIN-933-TZN-8.8<td>30"
+            f"<tr><td>S.5<td>NAKRĘTKA M8<td>{10 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
+            f"<tr><td>S.6<td>PODKŁADKA D9<td>{20 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
     result += (
         f"<tr><th colspan=6>Ilość konstrukcji (stołów) = {ilosc_kons:.0f} szt."
