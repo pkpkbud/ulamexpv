@@ -17,8 +17,9 @@
     <script type="text/javascript">
         function zestawienie() {
             $.getJSON("/_jednopodporowa", {
-                szer_pv: $('input[name="szer_pv"]').val(),
-                wys_pv: $('select[name="wys_pv"]').val(),
+                wym_pv_1: $('input[name="wym_pv_1"]').val(),
+                wym_pv_2: $('input[name="wym_pv_2"]').val(),
+                uklad_pv: $('select[name="uklad_pv"]').val(),
                 moc_pv: $('input[name="moc_pv"]').val(),
                 ilosc_pv: $('input[name="ilosc_pv"]').val(),
             }, function(data) {
@@ -31,13 +32,16 @@
     <form>
         <input type="button" value="« Wróć" onclick="window.location='.';">
         <p><h2>MODUŁY FOTOWOLTAICZNE</h2></p>
-        <p>Szerokość = <input type="number" step="5" name="szer_pv" value="1000" min="0"
-            title="Szerokość pojedycznego modułu" onchange="zestawienie()"> mm</p>
-        <p><select name="wys_pv" title="Wysokość pojedynczego modułu" onchange="zestawienie()">
-            <option value="1">Wysokość = do 1800 mm</option>
-            <option disabled>Wysokość = do 2100 mm</option>
+        <p>Wymiary =
+            <input type="number" step="5" name="wym_pv_1" value="1000" min="0"
+                style="width: 50px" onchange="zestawienie()"> x 
+            <input type="number" step="5" name="wym_pv_2" value="1750" min="0"
+                style="width: 50px" onchange="zestawienie()"> mm
+        </p>
+        <p><select name="uklad_pv" title="Układ modułów na konstrukcji" onchange="zestawienie()">
+            <option value="1">Układ = pionowy (V)</option>
+            <option value="2">Układ = poziomy (H)</option>
         </select></p>
-        <p>Układ = pionowy (V)</p>
         <p>Moc 1 modułu = <input type="number" step="5" name="moc_pv" value="450" min="0"
             title="Moc pojedycznego modułu" onchange="zestawienie()"> W</p>
         <p>Ilość modułów = <input type="number" step="1" name="ilosc_pv" value="8" min="0"

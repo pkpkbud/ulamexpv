@@ -1,5 +1,5 @@
 from contextlib import suppress
-from math import ceil
+from math import ceil, floor
 
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 from flask_autoindex import AutoIndex
@@ -190,32 +190,57 @@ def jednopodporowa():
 
 @app.route("/_jednopodporowa")
 def _jednopodporowa():
-    szer_pv = int(request.args.get("szer_pv"))
-    wys_pv = int(request.args.get("wys_pv"))
+    wym_pv_1 = int(request.args.get("wym_pv_1"))
+    wym_pv_2 = int(request.args.get("wym_pv_2"))
+    uklad_pv = int(request.args.get("uklad_pv"))
     moc_pv = int(request.args.get("moc_pv"))
     ilosc_pv = int(request.args.get("ilosc_pv"))
-    dlugosc = ceil(ilosc_pv / 2) * (szer_pv + 20) + 60
-    ilosc_ram = max(2, ceil((dlugosc - 1000) / 2000) + 1)
-    if wys_pv == 1:
-        result = (
-            f'<p><form action="/static/Jednopodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
-            f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
-            f"<table>"
-            f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
-            f"<tr><th>[nr]<th>-<th>[szt.]<th>-<th>[mm]"
-            f"<tr><td>1<td>SŁUP<td>{1 * ilosc_ram}<td>C120x40x15x3.0<td>2800"
-            f"<tr><td>2<td>RYGIEL<td>{1 * ilosc_ram}<td>L100x70x25x2.5<td>2800"
-            f"<tr><td>3<td>STĘŻENIE DŁUGIE<td>{1 * ilosc_ram}<td>LZR70x70x2<td>1700"
-            f"<tr><td>4<td>STĘŻENIE KRÓTKIE<td>{1 * ilosc_ram}<td>LZR70x70x2<td>1100"
-            f"<tr><td>5<td>PŁATEW<td>{4 * ceil(dlugosc / 6210)}<td>PV40x40<td>6210"
-            f"<tr><th colspan=6>Masa konstrukcji = {30 * ilosc_ram + 0.8e-3 * 4 * dlugosc:.0f} kg"
-            f"<tr><td>S.1<td>ŚRUBA M12<td>{5 * ilosc_ram}<td>DIN-933-TZN-8.8<td>35"
-            f"<tr><td>S.2<td>NAKRĘTKA M12<td>{5 * ilosc_ram}<td>DIN-6923-TZN-8<td>-"
-            f"<tr><td>S.3<td>PODKŁADKA D13<td>{10 * ilosc_ram}<td>DIN-9021-TZN-200HV<td>-"
-            f"<tr><th colspan=6>Ilość konstrukcji (długość do 20 m) = {ceil(dlugosc / 20000):.0f} szt."
-            f"<tr><th colspan=6>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW"
-            f"</table>"
-        )
+    szer_pv, dlug_pv = sorted([wym_pv_1, wym_pv_2])
+    L = 20000  # mm - długość konstrukcji do 20 m
+    if uklad_pv == 1:
+        l = ceil(ilosc_pv / 2) * (szer_pv + 20)
+        n = min(ceil(ilosc_pv / 2), floor((L - 60) / (szer_pv + 20)))
+    elif uklad_pv == 2:
+        l = ceil(ilosc_pv / 3) * (dlug_pv + 10)
+        n = min(ceil(ilosc_pv / 3), floor((L - 60) / (dlug_pv + 10)))
+    l += ceil(l / L) * 60
+    ilosc_kons = l / L
+    ilosc_ram = ceil(ilosc_kons * ceil((L - 1000) / 1700))
+    ilosc_stezen = 2 * ceil(ilosc_kons)
+    dlug_platwi = (4 if uklad_pv == 1 else 6) * l
+    masa = 35.3 * ilosc_ram + 4.0 * ilosc_stezen + 0.86e-3 * dlug_platwi
+    result = (
+        f'<p><form action="/static/Jednopodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
+        f'<p><form action="/static/Jednopodporowa_U{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form></p>'
+        + n * f'<h2><img src="/static/Jednopodporowa_{uklad_pv}.png"></h2>'
+        + f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
+        f"<table>"
+        f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
+        f"<tr><th>[nr]<th>-<th>[szt.]<th>-<th>[mm]"
+        f"<tr><td>1<td>SŁUP<td>{1 * ilosc_ram}<td>C130x50x15x3.0<td>2800"
+        f"<tr><td>2<td>RYGIEL<td>{1 * ilosc_ram}<td>L100x70x25x2.5<td>3100"
+        f"<tr><td>31<td>STĘŻENIE DŁUGIE<td>{1 * ilosc_ram}<td>CZ60x40x3<td>1700"
+        f"<tr><td>32<td>STĘŻENIE KRÓTKIE<td>{1 * ilosc_ram}<td>CZ60x40x3<td>1100"
+        f"<tr><td>4<td>STĘŻENIE PODŁUŻNE<td>{ilosc_stezen}<td>LZR60x60x2<td>2220"
+        f"<tr><td>5<td>PŁATEW<br>* długość łączna<td>{ceil(dlug_platwi / 6210)}<td>PV 40x40 6-kątny<td>6210<br>{dlug_platwi:,}*"
+        f"<tr><th colspan=6>Masa konstrukcji = {masa:.0f} kg"
+        f"<tr><td>S.1<td>ŚRUBA M12<td>{5 * ilosc_ram + 2 * ilosc_stezen}<td>DIN-933-TZN-8.8<td>35"
+        f"<tr><td>S.2<td>NAKRĘTKA M12<td>{5 * ilosc_ram + 2 * ilosc_stezen}<td>DIN-6923-TZN-8<td>-"
+        f"<tr><td>S.3<td>PODKŁADKA D13<td>{10 * ilosc_ram + 4 * ilosc_stezen}<td>DIN-9021-TZN-200HV<td>-"
+        f"<tr><td>S.4<td>ŚRUBA M10<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram}<td>DIN-933-TZN-8.8<td>30"
+        f"<tr><td>S.5<td>NAKRĘTKA M10<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram}<td>DIN-6923-TZN-8<td>-"
+        f"<tr><td>S.6<td>PODKŁADKA D11<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram}<td>DIN-9021-TZN-200HV<td>-"
+        f"<tr><th colspan=6>Ilość niezależnych konstrukcji (do 20 m) = {ceil(ilosc_kons):.0f} szt."
+        f"<tr><th colspan=6>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW"
+        f"</table>"
+    )
+    if (
+        uklad_pv == 1
+        and (dlug_pv > 1800 or dlug_pv < 1600)
+        or uklad_pv == 2
+        and (szer_pv > 1150 or szer_pv < 800)
+    ):
+        result = "<h2>BRAK</h2>"
     return jsonify(result=result)
 
 
