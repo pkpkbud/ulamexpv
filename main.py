@@ -76,11 +76,12 @@ def _dwupodporowa():
     uklad_pv = int(request.args.get("uklad_pv"))
     moc_pv = int(request.args.get("moc_pv"))
     ilosc_pv = int(request.args.get("ilosc_pv"))
-    ilosc_kons = ceil(ilosc_pv / 12) if typ_pv in [1, 11, 12] else ceil(ilosc_pv / 8)
+    mono = [1, 11, 12, 14]
+    ilosc_kons = ceil(ilosc_pv / 12) if typ_pv in mono else ceil(ilosc_pv / 8)
     result = (
         f'<p><form action="/static/Dwupodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
         f'<p><form action="/static/Dwupodporowa_U{typ_pv}{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form></p>'
-        f'<h2><img src="/static/Dwupodporowa_{1 if typ_pv in [1, 11, 12] else 2}{uklad_pv}.png"> x {ilosc_kons}</h2>'
+        f'<h2><img src="/static/Dwupodporowa_{1 if typ_pv in mono else 2}{uklad_pv}.png"> x {ilosc_kons}</h2>'
         f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
         f"<table>"
         f"<tr><th>Poz.<th>Nazwa<th>Liczba<th>Opis<th>Długość"
@@ -91,7 +92,7 @@ def _dwupodporowa():
         f"<tr><td>4<td>WSPORNIK BOCZNY<td>{2 * ilosc_kons}<td>LZR60x60x2<td>2750"
         f"<tr><td>5<td>WSPORNIK TYLNY<td>{1 * ilosc_kons}<td>LZR70x70x2<td>3100"
     )
-    if typ_pv in [1, 11, 12] and uklad_pv == 1:
+    if typ_pv in mono and uklad_pv == 1:
         result += (
             f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{8 * ilosc_kons}<td>C104x45x12x2.0<td>600"
             f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400"
@@ -178,7 +179,7 @@ def _dwupodporowa():
         f"<tr><th colspan=6>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW"
         f"</table>"
     )
-    if typ_pv in [1, 11, 12] and uklad_pv == 2:
+    if typ_pv in mono and uklad_pv == 2:
         result = "<h2>BRAK</h2>"
     return jsonify(result=result)
 
