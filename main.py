@@ -105,7 +105,7 @@ def _dwupodporowa():
             f"<tr><td>S.5<td>NAKRĘTKA M8<td>{12 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
             f"<tr><td>S.6<td>PODKŁADKA D9<td>{24 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
-    elif typ_pv in [2, 10, 13]:
+    elif typ_pv in [2, 10, 13] or (typ_pv == 15 and uklad_pv == 1):
         result += (
             f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>600"
             f"<tr><td>71<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2180"
@@ -118,7 +118,7 @@ def _dwupodporowa():
             f"<tr><td>S.5<td>NAKRĘTKA M8<td>{10 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
             f"<tr><td>S.6<td>PODKŁADKA D9<td>{20 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
-    elif typ_pv in [3, 4, 5, 6] or (typ_pv == 7 and uklad_pv == 2):
+    elif typ_pv in [3, 4, 5, 6] or (typ_pv in [7, 15] and uklad_pv == 2):
         result += (
             f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>600"
             f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400"
@@ -209,6 +209,7 @@ def _jednopodporowa():
     ilosc_ram = ceil(ilosc_kons * ceil((L - 1000) / 1700))
     ilosc_stezen = 2 * ceil(ilosc_kons)
     dlug_platwi = (4 if uklad_pv == 1 else 6) * l
+    ilosc_platwi = ceil(dlug_platwi / 6210)
     masa = 35.3 * ilosc_ram + 4.0 * ilosc_stezen + 0.86e-3 * dlug_platwi
     result = (
         f'<p><form action="/static/Jednopodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
@@ -223,14 +224,17 @@ def _jednopodporowa():
         f"<tr><td>31<td>STĘŻENIE DŁUGIE<td>{1 * ilosc_ram}<td>CZ60x40x3<td>1700"
         f"<tr><td>32<td>STĘŻENIE KRÓTKIE<td>{1 * ilosc_ram}<td>CZ60x40x3<td>1100"
         f"<tr><td>4<td>STĘŻENIE PODŁUŻNE<td>{ilosc_stezen}<td>LZR60x60x2<td>2220"
-        f"<tr><td>5<td>PŁATEW<br>* długość łączna<td>{ceil(dlug_platwi / 6210)}<td>PV 40x40 6-kątny<td>6210<br>{dlug_platwi:,}*"
+        f"<tr><td>5<td>PŁATEW<br>* długość łączna<td>{ilosc_platwi}<td>"
+        f"<a href='https://ulamex.com.pl/profil-aluminiowy-pv-40x40-do-fotowoltaiki'>PV 40x40 6-kątny</a><td>6210<br>{dlug_platwi:,}*"
+        f"<tr><td>6<td>ŁĄCZNIK PŁATWI<td>{ilosc_platwi}<td>"
+        f"<a href='https://ulamex.com.pl/lacznik-ceownik-aluminium'>C45x25</a><td>100"
         f"<tr><th colspan=6>Masa konstrukcji = {masa:.0f} kg"
         f"<tr><td>S.1<td>ŚRUBA M12<td>{5 * ilosc_ram + 2 * ilosc_stezen}<td>DIN-933-TZN-8.8<td>35"
         f"<tr><td>S.2<td>NAKRĘTKA M12<td>{5 * ilosc_ram + 2 * ilosc_stezen}<td>DIN-6923-TZN-8<td>-"
         f"<tr><td>S.3<td>PODKŁADKA D13<td>{10 * ilosc_ram + 4 * ilosc_stezen}<td>DIN-9021-TZN-200HV<td>-"
-        f"<tr><td>S.4<td>ŚRUBA M10<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram}<td>DIN-933-TZN-8.8<td>30"
-        f"<tr><td>S.5<td>NAKRĘTKA M10<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram}<td>DIN-6923-TZN-8<td>-"
-        f"<tr><td>S.6<td>PODKŁADKA D11<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram}<td>DIN-9021-TZN-200HV<td>-"
+        f"<tr><td>S.4<td>ŚRUBA M10<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram + 2 * ilosc_platwi}<td>DIN-933-TZN-8.8<td>30"
+        f"<tr><td>S.5<td>NAKRĘTKA M10<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram + 2 * ilosc_platwi}<td>DIN-6923-TZN-8<td>-"
+        f"<tr><td>S.6<td>PODKŁADKA D11<td>{(4 if uklad_pv == 1 else 6) * ilosc_ram + 2 * ilosc_platwi}<td>DIN-9021-TZN-200HV<td>-"
         f"<tr><th colspan=6>Ilość niezależnych konstrukcji (do 20 m) = {ceil(ilosc_kons):.0f} szt."
         f"<tr><th colspan=6>Moc instalacji = {(ilosc_pv * moc_pv) / 1000:.1f} kW"
         f"</table>"
