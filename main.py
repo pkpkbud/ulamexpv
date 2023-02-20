@@ -76,7 +76,7 @@ def _dwupodporowa():
     uklad_pv = int(request.args.get("uklad_pv"))
     moc_pv = int(request.args.get("moc_pv"))
     ilosc_pv = int(request.args.get("ilosc_pv"))
-    mono = [1, 11, 12, 14]
+    mono = [1, 11, 12, 14, 16]
     ilosc_kons = ceil(ilosc_pv / 12) if typ_pv in mono else ceil(ilosc_pv / 8)
     result = (
         f'<p><form action="/static/Dwupodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
