@@ -19,12 +19,28 @@
     <h4>&copy; 2022÷<script>document.write(new Date().getFullYear())</script>
     <a href="mailto:pkpkbud@gmail.com">PKPKBUD</a> dla
     <a href="https://ulamex.com.pl/">ULAMEX</a></h4>
-    <p><form action="/dwupodporowa"><input type="submit" value="Dwupodporowa »"></form></p>
-    <p><form action="/jednopodporowa"><input type="submit" value="Jednopodporowa »"></form></p>
-    <p><form method="POST">
-        <input type="text" name="username" placeholder="Użytkownik"></input>
-        <input type="password" name="password" placeholder="Hasło"></input><br>
-        <input type="submit" value="Pliki »"></input>
-    </form></p>
+    <p><fieldset style="width:300px">
+    <legend>
+        Lokalizacja: Polska – do wysokości 300 m n.p.m.<br>
+        Strefa obciążenia: <a href="/static/Śnieg.png">śniegiem</a> 1 i 2, <a href="/static/Wiatr.png">wiatrem</a> 1
+    </legend>
+        <div style="text-align:center">
+            <form action="/dwupodporowa"><input type="submit" value="Dwupodporowa »"></form>
+        </div><br>
+        <div style="text-align:center">
+            <form action="/jednopodporowa"><input type="submit" value="Jednopodporowa »"></form>
+        </div><br>
+        <div style="text-align:center">
+            <form action="/dwupodporowa_m"><input type="submit" value="Dwupodporowa (M) »"></form>
+        </div>
+    </fieldset></p>
+    <p><fieldset style="width:300px">
+    <legend>Pliki wewnętrzne</legend>
+        <form method="POST" style="text-align:center">
+            <input type="text" name="username" placeholder="Użytkownik"></input>
+            <input type="password" name="password" placeholder="Hasło"></input><br>
+            <input type="submit" value="Login »"></input>
+        </form>
+    </fieldset></p>
 </body>
 </html>
