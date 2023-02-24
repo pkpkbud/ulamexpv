@@ -277,7 +277,7 @@ def _dwupodporowa_m():
     ilosc_platwi = ceil(dlug_platwi / 6210)
     masa = 35.0 * ilosc_ram + 4.0 * ilosc_stezen + 0.86e-3 * dlug_platwi
     result = (
-        f'<p><form action="/static/Dwupodporowa_M_Instrukcja.pdf"><input type="submit" value="Instrukcja" stated disabled></form></p>'
+        f'<p><form action="/static/Dwupodporowa_M_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
         f'<p><form action="/static/Dwupodporowa_M_U{uklad_pv}.pdf"><input type="submit" value="Rysunek"></form></p>'
         + n * f'<h2><img src="/static/Jednopodporowa_{uklad_pv}.png"></h2>'
         + f"<p><h2>ZESTAWIENIE ELEMENTÓW</h2></p>"
