@@ -22,6 +22,7 @@
                 uklad_pv: $('select[name="uklad_pv"]').val(),
                 moc_pv: $('input[name="moc_pv"]').val(),
                 ilosc_pv: $('input[name="ilosc_pv"]').val(),
+                platew: $('select[name="platew"]').val(),
             }, function(data) {
                 $("#result").html(data.result);
             });
@@ -46,6 +47,14 @@
             title="Moc pojedycznego modułu" onchange="zestawienie()"> W</p>
         <p>Ilość modułów = <input type="number" step="1" name="ilosc_pv" value="8" min="0"
             title="Ilość modułów fotowoltaicznych" onchange="zestawienie()"> szt.</p>
+        <p><select name="platew" title="Długość pojedynczego profilu płatwi" onchange="zestawienie()">
+            <option value="2220">Profil PV 40x40 = 2,22 m</option>
+            <option value="2500">Profil PV 40x40 = 2,50 m</option>
+            <option value="3300">Profil PV 40x40 = 3,30 m</option>
+            <option value="4400">Profil PV 40x40 = 4,40 m</option>
+            <option value="6210" selected>Profil PV 40x40 = 6,21 m</option>
+            <option value="6600">Profil PV 40x40 = 6,60 m</option>
+        </select></p>
     </form>
     <p id="result"></p>
     <script>zestawienie()</script>

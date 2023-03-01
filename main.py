@@ -196,6 +196,7 @@ def _jednopodporowa():
     uklad_pv = int(request.args.get("uklad_pv"))
     moc_pv = int(request.args.get("moc_pv"))
     ilosc_pv = int(request.args.get("ilosc_pv"))
+    platew = int(request.args.get("platew"))
     szer_pv, dlug_pv = sorted([wym_pv_1, wym_pv_2])
     L = 20000  # mm - długość konstrukcji do 20 m
     if uklad_pv == 1:
@@ -209,7 +210,7 @@ def _jednopodporowa():
     ilosc_ram = ceil(ilosc_kons * ceil((L - 1000) / 1700))
     ilosc_stezen = 2 * ceil(ilosc_kons)
     dlug_platwi = (4 if uklad_pv == 1 else 6) * l
-    ilosc_platwi = ceil(dlug_platwi / 6210)
+    ilosc_platwi = ceil(dlug_platwi / platew)
     masa = 35.3 * ilosc_ram + 4.0 * ilosc_stezen + 0.86e-3 * dlug_platwi
     result = (
         f'<p><form action="/static/Jednopodporowa_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
@@ -224,8 +225,8 @@ def _jednopodporowa():
         f"<tr><td>31<td>STĘŻENIE DŁUGIE<td>{1 * ilosc_ram}<td>CZ60x40x3<td>1700"
         f"<tr><td>32<td>STĘŻENIE KRÓTKIE<td>{1 * ilosc_ram}<td>CZ60x40x3<td>1100"
         f"<tr><td>4<td>STĘŻENIE PODŁUŻNE<td>{ilosc_stezen}<td>LZR60x60x2<td>2220"
-        f"<tr><td>5<td>PŁATEW<br>* długość łączna<td>{ilosc_platwi}<td>"
-        f"<a href='https://ulamex.com.pl/profil-aluminiowy-pv-40x40-do-fotowoltaiki'>PV 40x40 6-kątny</a><td>6210<br>{dlug_platwi:,}*"
+        f"<tr><td>5<td>PŁATEW<br>* potrzebna długość łączna<td>{ilosc_platwi}<td>"
+        f"<a href='https://ulamex.com.pl/profil-aluminiowy-pv-40x40-do-fotowoltaiki'>PV 40x40 6-kątny</a><td>{platew}<br>{dlug_platwi:,}*"
         f"<tr><td>6<td>ŁĄCZNIK PŁATWI<td>{ilosc_platwi}<td>"
         f"<a href='https://ulamex.com.pl/lacznik-ceownik-aluminium'>C45x25</a><td>100"
         f"<tr><th colspan=6>Masa konstrukcji = {masa:.0f} kg"
@@ -261,6 +262,7 @@ def _dwupodporowa_m():
     uklad_pv = int(request.args.get("uklad_pv"))
     moc_pv = int(request.args.get("moc_pv"))
     ilosc_pv = int(request.args.get("ilosc_pv"))
+    platew = int(request.args.get("platew"))
     szer_pv, dlug_pv = sorted([wym_pv_1, wym_pv_2])
     L = 20000  # mm - długość konstrukcji do 20 m
     if uklad_pv == 1:
@@ -274,7 +276,7 @@ def _dwupodporowa_m():
     ilosc_ram = ceil(ilosc_kons * ceil((L - 1000) / 1700))
     ilosc_stezen = 2 * ceil(ilosc_kons)
     dlug_platwi = (4 if uklad_pv == 1 else 6) * l
-    ilosc_platwi = ceil(dlug_platwi / 6210)
+    ilosc_platwi = ceil(dlug_platwi / platew)
     masa = 35.0 * ilosc_ram + 4.0 * ilosc_stezen + 0.86e-3 * dlug_platwi
     result = (
         f'<p><form action="/static/Dwupodporowa_M_Instrukcja.pdf"><input type="submit" value="Instrukcja"></form></p>'
@@ -289,8 +291,8 @@ def _dwupodporowa_m():
         f"<tr><td>2<td>RYGIEL<td>{1 * ilosc_ram}<td>L100x70x25x2.5<td>3100"
         f"<tr><td>33<td>STĘŻENIE POPRZECZNE<td>{1 * ilosc_ram}<td>CZ60x40x3<td>1480"
         f"<tr><td>4<td>STĘŻENIE PODŁUŻNE<td>{ilosc_stezen}<td>LZR60x60x2<td>2220"
-        f"<tr><td>5<td>PŁATEW<br>* długość łączna<td>{ilosc_platwi}<td>"
-        f"<a href='https://ulamex.com.pl/profil-aluminiowy-pv-40x40-do-fotowoltaiki'>PV 40x40 6-kątny</a><td>6210<br>{dlug_platwi:,}*"
+        f"<tr><td>5<td>PŁATEW<br>* potrzebna długość łączna<td>{ilosc_platwi}<td>"
+        f"<a href='https://ulamex.com.pl/profil-aluminiowy-pv-40x40-do-fotowoltaiki'>PV 40x40 6-kątny</a><td>{platew}<br>{dlug_platwi:,}*"
         f"<tr><td>6<td>ŁĄCZNIK PŁATWI<td>{ilosc_platwi}<td>"
         f"<a href='https://ulamex.com.pl/lacznik-ceownik-aluminium'>C45x25</a><td>100"
         f"<tr><th colspan=6>Masa konstrukcji = {masa:.0f} kg"
