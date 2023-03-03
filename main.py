@@ -118,7 +118,7 @@ def _dwupodporowa():
             f"<tr><td>S.5<td>NAKRĘTKA M8<td>{10 * ilosc_kons}<td>DIN-895-TZN-8<td>-"
             f"<tr><td>S.6<td>PODKŁADKA D9<td>{20 * ilosc_kons}<td>DIN-9021-TZN-200HV<td>-"
         )
-    elif typ_pv in [3, 4, 5, 6] or (typ_pv in [7, 15] and uklad_pv == 2):
+    elif typ_pv in [3, 4, 5, 6, 17] or (typ_pv in [7, 15] and uklad_pv == 2):
         result += (
             f"<tr><td>6<td>ŁĄCZNIK RYGLI, PŁATWI<td>{7 * ilosc_kons}<td>C104x45x12x2.0<td>600"
             f"<tr><td>72<td>RYGIEL (71-73)<td>{4 * ilosc_kons}<td>C110x50x15x2.0<td>2400"
